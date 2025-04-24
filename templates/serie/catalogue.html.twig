@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue des Séries{% endblock %}
+
+{% block body %}
+{{navbar()}}
+<div class="catalogue-container">
+    <h1>Catalogue des Séries</h1>
+
+    <div class="film-grid">
+        {% for serie in series %}
+            <a class="film-item" href="{{ path('series_profile', {'id': serie.id}) }}">
+                <img src="{{ asset('img/serie_img/' ~ serie.photo) }}" alt="{{ serie.titre }}">
+                <div class="film-info">
+                    <h2>{{ serie.titre }}</h2>
+                    <p>{{ serie.description|slice(0, 100) ~ '...' }}</p>
+                    <p><strong>Auteur :</strong> <em>{{ serie.author|slice(0, 30) ~ '...' }}</em></p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+<div class="pagination">
+    {% if currentPage > 1 %}
+        <a href="{{ path('serie_catalogue', {'page': currentPage - 1}) }}" class="pagination-link">← Précédent</a>
+    {% else %}
+        <span class="disabled">← Précédent</span>
+    {% endif %}
+
+    {% if currentPage > 4 %}
+        <a href="{{ path('serie_catalogue', {'page': 1}) }}" class="pagination-link">1</a>
+        <span>...</span>
+    {% endif %}
+
+    {% for page in (currentPage - 2)..(currentPage + 2) %}
+        {% if page > 0 and page <= totalPages %}
+            {% if page == currentPage %}
+                <span class="current-page">{{ page }}</span>
+            {% else %}
+                <a href="{{ path('serie_catalogue', {'page': page}) }}" class="pagination-link">{{ page }}</a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if currentPage < totalPages - 3 %}
+        <span>...</span>
+        <a href="{{ path('serie_catalogue', {'page': totalPages}) }}" class="pagination-link">{{ totalPages }}</a>
+    {% endif %}
+
+    {% if currentPage < totalPages %}
+        <a href="{{ path('serie_catalogue', {'page': currentPage + 1}) }}" class="pagination-link">Suivant →</a>
+    {% else %}
+        <span class="disabled">Suivant →</span>
+    {% endif %}
+</div>
+
+
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .catalogue-container {
+        max-width: 1200px;
+        margin: 0px auto;
+        padding: 20px;
+    }
+
+    .film-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .film-item {
+        background-color: #1e1e1e;
+        border: 1px solid #2a2a2a;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+        text-decoration:none;
+        color:white;
+    }
+
+    .film-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .film-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .film-info {
+        padding: 15px;
+    }
+
+    .film-info h2 {
+        font-size: 1.2rem;
+        margin:0;
+        color: #ffa500;
+    }
+
+    .film-info p {
+        font-size: 0.9rem;
+        margin: 5px 0;
+        text-align:left;
+    }
+
+    .pagination {
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .pagination a, .pagination span {
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #333333;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination a:hover {
+        background-color: #ffa500;
+    }
+
+    .pagination .current-page {
+        background-color: #ffa500;
+        pointer-events: none;
+    }
+</style>
+{% endblock %}

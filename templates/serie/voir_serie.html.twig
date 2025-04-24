@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ serie.titre }} - Saison {{ saison }} | Streaming{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Regardez tous les épisodes de {{ serie.titre }} - Saison {{ saison }}. Choisissez parmi différents lecteurs et épisodes. Streaming disponible." />
+    <meta name="keywords" content="serie, {{ serie.titre }}, saison {{ saison }}, streaming, épisodes" />
+    <meta name="author" content="Votre Nom" />
+    <meta http-equiv="Content-Language" content="fr" />
+    <link rel="canonical" href="{{ path('voir_series', { 'serieId': serie.id, 'saison': saison }) }}" />
+{% endblock %}
+
+{% block body %}
+    {{ navbar() }}
+
+    <div class="film-lecture-container">
+        <h1>
+            <a style="color: white;" href="{{ path('voir_series', { 'serieId': serie.id, 'saison': saison }) }}">
+                {{ serie.titre }} - Saison {{ saison }}
+            </a>
+        </h1>
+        <div class="film-lecture-box">
+            <div class="film-lecture-content-vid">
+                <div class="select-film-lecteur" style="display:flex;">
+                    <select id="episode-select" aria-label="Sélectionnez un épisode">
+                        {% for episodeNumber, lecteurs in episodes %}
+                            <option value="{{ episodeNumber }}">ÉPISODE {{ episodeNumber }}</option>
+                        {% endfor %}
+                    </select>
+                    <select id="lecteur-select" style="display: none;" aria-label="Sélectionnez un lecteur"></select>
+                </div>
+            </div>
+        </div>
+
+        <div id="video-container" style="margin-top: 20px;">
+            <iframe id="video-iframe" src="" frameborder="0" height="700" width="1200" allowfullscreen style="display: none; margin-bottom: 40px;"></iframe>
+        </div>
+        <div id="lecteur-message" style="display: none; color: red; margin-top: 10px;">
+            Essayez de changer de lecteur...
+        </div>
+    </div>
+
+    {{ footer() }}
+
+    <script>
+        var episodeLinks = {{ episodes | json_encode | raw }}; // Récupérer les liens des épisodes
+
+        var episodeSelect = document.getElementById('episode-select');
+        var lecteurSelect = document.getElementById('lecteur-select');
+        var videoIframe = document.getElementById('video-iframe');
+        var lecteurMessage = document.getElementById('lecteur-message'); // Référence au message d'avertissement
+
+        // Fonction pour mettre à jour la vidéo dans l'iframe
+        function updateVideo(link) {
+            if (link) {
+                videoIframe.src = link; // Met à jour l'attribut src de l'iframe avec le lien du lecteur
+                videoIframe.style.display = 'block'; // Affiche l'iframe
+            }
+        }
+
+        // Fonction pour mettre à jour les lecteurs en fonction de l'épisode sélectionné
+        function updateLecteurs(episodeNumber) {
+            lecteurSelect.innerHTML = ''; // Réinitialiser
+            lecteurSelect.style.display = 'none'; // Masquer le select des lecteurs
+
+            if (episodeNumber) {
+                var lecteurs = episodeLinks[episodeNumber];
+                if (lecteurs) { // Vérifiez si des lecteurs existent
+                    var lecteurIndex = 0; // Initialise un compteur pour les lecteurs
+                    for (var lecteur in lecteurs) {
+                        if (lecteurs.hasOwnProperty(lecteur)) {
+                            var option = document.createElement('option');
+                            option.value = lecteurs[lecteur]; // Lien du lecteur
+                            option.textContent = `Lecteur ${lecteurIndex}`; // Affiche "Lecteur X"
+                            lecteurSelect.appendChild(option);
+                            lecteurIndex++; // Incrémente le compteur
+                        }
+                    }
+                    // Affichez le sélecteur de lecteurs uniquement s'il y a des lecteurs
+                    if (lecteurSelect.options.length > 0) {
+                        lecteurSelect.style.display = 'block';
+                        lecteurMessage.style.display = 'none'; // Masquer le message d'avertissement
+
+                        lecteurSelect.value = lecteurSelect.options[0].value; // Sélectionner le premier lecteur par défaut
+                        updateVideo(lecteurSelect.value); // Charger la vidéo avec le lecteur actuel
+                    } else {
+                        lecteurMessage.style.display = 'block'; // Afficher le message d'avertissement si aucun lecteur
+                    }
+                }
+            }
+        }
+
+        // Gestion du changement de sélection du lecteur
+        lecteurSelect.addEventListener('change', function() {
+            updateVideo(this.value); // Mettre à jour la vidéo avec le nouveau lecteur
+        });
+
+        // Initialisation : sélectionner automatiquement le premier épisode et mettre à jour les lecteurs
+        document.addEventListener('DOMContentLoaded', function() {
+            var firstEpisodeNumber = Object.keys(episodeLinks)[0]; // Obtenir le premier épisode
+            episodeSelect.value = firstEpisodeNumber; // Sélectionner le premier épisode
+
+            updateLecteurs(firstEpisodeNumber); // Mettre à jour les lecteurs pour le premier épisode
+        });
+
+        // Gestion du changement de sélection de l'épisode
+        episodeSelect.addEventListener('change', function() {
+            updateLecteurs(this.value);
+        });
+    </script>
+{% endblock %}

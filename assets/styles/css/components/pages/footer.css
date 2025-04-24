@@ -1,0 +1,71 @@
+footer {
+    background-color: #00000000;
+    color: #ffffff; 
+    text-align: center; 
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+    z-index: 3000;
+    padding-top: 100px;
+
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+
+.footer-section h3 {
+    font-size: 13px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.footer-section p,
+.footer-section ul {
+    font-size: 14px; /* Taille du texte */
+    line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
+}
+
+.footer-section ul {
+    list-style: none; /* Suppression des puces */
+    padding: 0; /* Pas de padding interne */
+}
+
+.footer-section ul li {
+    margin: 10px 0; /* Espacement entre les éléments de liste */
+}
+
+.footer-section ul li a {
+    color: #ffffff;
+    text-decoration: none; /* Suppression des soulignements */
+    transition: color 0.3s ease; /* Transition douce pour le survol */
+}
+
+.footer-section ul li a:hover {
+    color: #1abc9c; /* Changement de couleur au survol */
+}
+
+.footer-bottom {
+    padding-top: 10px;
+}
+
+.footer-bottom p {
+    font-size: 12px; /* Plus petite taille de texte pour le copyright */
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding-top: 0px;
+
+    }
+
+    .footer-section {
+        margin: 10px 0; /* Réduire l'espacement pour petits écrans */
+    }
+}

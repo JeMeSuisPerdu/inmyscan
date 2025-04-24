@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ manga.titre }} - Scan en VOSTFR Gratuit
+{% endblock %}
+
+{% block body %}
+{{navbar()}}
+<h1 style="color:#ffda00d6;text-align: center;">{{ manga.titre }}</h1>
+
+<div class="scan-chapter-container">
+    <select id="chapterSelector">
+        {% for chapter in chapters %}
+            <option value="{{ chapter }}" {% if chapter == selectedChapter %}selected{% endif %}>
+                Chapitre {{ loop.index }}  <!-- Affichage formaté des chapitres -->
+            </option>
+        {% endfor %}
+    </select>
+    <div>
+        <button class="scan-buttons prevChapterBtn">Chapitre Précédent</button>
+        <button class="scan-buttons nextChapterBtn">Chapitre Suivant</button>
+    </div>
+</div>
+
+<div class="scan-img-container" style="text-align: center; position: relative;">
+    <ul style="padding:0; display: inline-block;">
+        {% for link in selectedLinks %}
+            {% set id = link|split('=')|last %}  {# Extraire l'ID de l'URL #}
+            {% set thumbnailUrl = 'https://drive.google.com/thumbnail?id=' ~ id ~ '&sz=w1000' %}  {# Construire l'URL de miniature #}
+            <li>
+                <img class="scan-img" src="{{ thumbnailUrl }}" alt="Miniature" />
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div style="text-align:center;">
+    <button class="scan-buttons prevChapterBtn">Chapitre Précédent</button>
+    <button class="scan-buttons nextChapterBtn">Chapitre Suivant</button>
+</div>
+{{footer()}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#chapterSelector').change(function() {
+            const selectedChapter = $(this).val();
+            window.location.href = "{{ path('manga_scans', { id: manga.id }) }}?chapter=" + selectedChapter;
+        });
+
+        // Boutons de navigation (précédent et suivant) pour le haut et le bas
+        $('.prevChapterBtn').click(function() {
+            const currentChapter = $('#chapterSelector').val();
+            const chapterIndex = {{ chapters|json_encode|raw }}.indexOf(currentChapter);
+            if (chapterIndex > 0) {
+                const prevChapter = {{ chapters|json_encode|raw }}[chapterIndex - 1];
+                window.location.href = "{{ path('manga_scans', { id: manga.id }) }}?chapter=" + prevChapter;
+            }
+        });
+
+        $('.nextChapterBtn').click(function() {
+            const currentChapter = $('#chapterSelector').val();
+            const chapterIndex = {{ chapters|json_encode|raw }}.indexOf(currentChapter);
+            if (chapterIndex < {{ chapters|length }} - 1) {
+                const nextChapter = {{ chapters|json_encode|raw }}[chapterIndex + 1];
+                window.location.href = "{{ path('manga_scans', { id: manga.id }) }}?chapter=" + nextChapter;
+            }
+        });
+
+        // Applique le comportement du curseur sur toutes les images
+        $('.scan-img').mousemove(function(e) {
+            var imgWidth = $(this).width();
+            var cursorPos = e.offsetX;  // Position du curseur dans l'image
+
+            // Si le curseur est sur la partie gauche
+            if (cursorPos < imgWidth / 2) {
+                $(this).css('cursor', 'url("left-arrow.png"), pointer');  // Curseur à gauche
+            } else {
+                $(this).css('cursor', 'url("right-arrow.png"), pointer');  // Curseur à droite
+            }
+        });
+
+        // Clic sur l'image pour changer de chapitre
+        $('.scan-img').click(function(e) {
+            var imgWidth = $(this).width();
+            var cursorPos = e.offsetX;  // Position du curseur dans l'image
+
+            const currentChapter = $('#chapterSelector').val();
+            const chapterIndex = {{ chapters|json_encode|raw }}.indexOf(currentChapter);
+
+            // Si on clique à gauche de l'image, on va au chapitre précédent
+            if (cursorPos < imgWidth / 2 && chapterIndex > 0) {
+                const prevChapter = {{ chapters|json_encode|raw }}[chapterIndex - 1];
+                window.location.href = "{{ path('manga_scans', { id: manga.id }) }}?chapter=" + prevChapter;
+            }
+            // Si on clique à droite de l'image, on va au chapitre suivant
+            else if (cursorPos >= imgWidth / 2 && chapterIndex < {{ chapters|length }} - 1) {
+                const nextChapter = {{ chapters|json_encode|raw }}[chapterIndex + 1];
+                window.location.href = "{{ path('manga_scans', { id: manga.id }) }}?chapter=" + nextChapter;
+            }
+        });
+    });
+</script>
+
+{% endblock %}

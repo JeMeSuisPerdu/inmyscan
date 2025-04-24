@@ -1,0 +1,129 @@
+    .anime-box {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0 50px;
+        position: relative;
+    }
+    .anime-list {
+        display: flex;
+        justify-content: start; 
+        overflow: hidden;
+        /* background: #00000017; */
+        scroll-behavior: smooth;
+        position: relative;
+        overflow-x: scroll;
+    }
+    .anime-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .anime-item {
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 2px;
+        width: 280px;
+        transition: transform 0.2s;
+        height: 170px;
+    }
+
+
+    /* .anime-container p {
+        font-size: 15px; 
+        color: #fffffffc;
+        margin-bottom: 10px; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 500;
+        margin-top: 0;
+    } */
+    .limited-text {
+        width: 200px; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        display: none;
+    }
+
+
+
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 200px;
+        width: 45px;
+        font-size: 24px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    .carousel-btn-relative{
+        position: relative;
+    }
+    .carousel-btn.left {
+        left: 0;
+    }
+    
+    .carousel-btn.right {
+        right: 0;
+    }
+    
+    .clickable-image {
+        transition: transform 0.3s ease;
+    }
+    
+    
+
+
+    
+    .anime-item img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        cursor: pointer;
+    }
+
+    /* Styles pour la scrollbar */
+    .anime-list::-webkit-scrollbar {
+        width: 8px; 
+        height: 0px; 
+    }
+
+
+    .scan-item{
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        width: 250px;
+        transition: transform 0.2s;
+        height: 170px;
+    }
+    .scan-item img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 10px;    
+    }
+    .last-scan-list{
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+        overflow: hidden;
+        background: #00000017;
+        overflow-x: scroll;
+    }
+    .scan-box{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 50px;
+    }
+    .last-scan-list::-webkit-scrollbar {
+        width: 8px;
+        height: 0px;
+    }
+

@@ -1,0 +1,759 @@
+/* Styles pour les écrans plus larges */
+@media (min-width: 2560px) {
+.scan-chapter-container img{
+    width: 1300px;
+}
+.scan-chapter-container{
+    text-align: center;
+    background: #111;
+    display: flex;
+    padding: 25px;
+    justify-content: space-around;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.favbtn{
+    font-size: 22px;
+}
+
+#search-results li {
+    font-size: 20px;
+}
+.search-results-container{
+    max-width: 1600px;
+}
+
+#search-results {
+    width: 30%;
+    z-index: 10000;
+}
+#search-input{
+    font-size:20px;
+    width: 700px;
+}
+.anime-catalogue-filter {
+    max-width: 1500px;
+}
+.anime-catalogue-list {
+    max-width: 1500px;
+}
+.profile-anime-section {
+    max-width: 1500px !important;
+}
+
+.btn {
+    font-size: 21px !important;
+}
+.profile-manga-roles ul>li {
+    font-size: 21px;
+}
+
+p {
+    font-size: 21px !important;
+}
+.saisons-container {
+    margin: 0px !important;
+}
+    .home-navbar-container { 
+        min-width: 1600px;
+    }
+
+    .logo-site {
+        font-size: 50px;
+    }
+
+    .logo-site img {
+        height: 80px;
+    }
+
+    .home-icon-account {
+        font-size: 30px;
+    }
+
+    .last-scan-list {
+        max-width: 1500px;
+    }
+
+    .search-form {
+        height: 60px;
+    }
+
+    .search-form svg {
+        width: 30px;
+    }
+
+h1 {
+    font-size: 35px !important;
+}
+
+h2 {
+    font-size: 25px !important;
+}
+
+h3 {
+    font-size: 23px !important;
+}
+    .anime-container p {
+        font-size: 21px;
+    }
+
+    .anime-catalogue-filter {
+        font-size: 22px;
+    }
+
+    .checkbox-wrapper-16 .checkbox-label {
+        font-size: 19px;
+    }
+
+    .anime-catalogue-container p {
+        font-size: 21px;
+    }
+
+    .search-input {
+        font-size: 20px;
+    }
+}
+
+
+
+@media screen and (max-width: 1342px) {
+    .home-navbar-container {
+        min-width: 1000px;
+    }
+
+    .main-video-container{
+        margin: 0 auto;
+    }
+    .image-profil-container{
+        width: 980px;
+    }
+    .profile-anime-section {
+        width: 980px;
+    }
+    #search-results{
+        margin-right: 90px;
+    }
+
+}
+
+@media screen and (max-width: 1062px) {
+    #search-results{
+        margin-right: 70px;
+    }
+    .home-navbar-container {
+        min-width: 900px;
+    }
+    .home-icon-account{
+        display: none;
+    }
+    
+    .menu-icon{
+        display: block;
+        margin-right: 50px;
+        margin-left: 0px;
+    }
+    .main-video-container{
+        margin: 0 auto;
+    }
+    .header-section {
+        position: relative;
+        width: 100%;
+        height: 25vh;
+        overflow: hidden;
+    }
+    .logo-site img{
+        padding-right: 13px;
+    }
+    .anime-lecture-box {
+        width: 900px;
+    }
+    #video-iframe{
+        width:900px;
+        margin-bottom: 40px;
+    }
+
+    .image-profil-container{
+        width: 800px;
+        max-height: 300px;
+    }
+    .profile-anime-section {
+        width: 800px;
+    }
+    .card{
+        width: 150px;
+    }
+    .logo-site{
+        padding-right: 50px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .scan-img-container img{
+    	width: 850px;
+    }
+
+    h1{
+        font-size: 36px!important;
+    }
+    #search-results {
+        margin-right: 10px;
+        width: 83%;
+        top: -30px;
+        font-size: 20px;
+    }
+    #search-results li {
+        padding: 20px;
+    }
+    .menu-icon {
+        display: block; 
+        margin-right: 0px;
+        margin-left: 25px;
+    }
+    .home-icon-account {
+        display: none; 
+    }
+    .home-navbar-container {
+        min-width: 100%;
+        padding: 45px 0 !important;
+    }
+
+    .search-form svg {
+        width: 25px;
+        margin-top: 3px;
+    }
+    .search-form{
+        --height-of-input: 80px;
+        --width-of-input: 850px;
+        margin-right: 14px;
+    }
+    #searchButtonBar{
+        font-size: 1.4rem;
+    }
+    #searchMangaDownload{
+        font-size: 1.4rem;
+    }
+    .anime-container {
+        margin: 5px 10px;
+        width: 900px;
+    }
+    .video-container h2{
+        font-size: 1.7rem;
+        text-align: center;
+    }
+    .logo-site{
+        font-size: 0;
+    }
+    .main-video-container{
+        margin: 0 auto;
+    }
+    .header-section {
+        position: relative;
+        width: 100%;
+        height: 25vh;
+        overflow: hidden;
+    }
+    .anime-item {
+        width: 300px;
+        height: 545px;
+    }
+    .anime-container h2{
+        font-size: 1.7rem;
+    }
+    .main-video-container h3{
+    font-size:2rem;
+    }
+    .video-container h2{
+        font-size: 2.2rem;
+    }
+    .logo-site img{
+        display: none;
+    }
+    .footer-section p, .footer-section ul {
+        font-size: 11px;
+    }
+    .footer-section h3 {
+        font-size: 14px;
+    }
+    .anime-lecture-box {
+        width: 800px;
+    }
+    #video-iframe{
+        width:800px;
+    }
+    .anime-lecture-container h1{
+        font-size: 1.8em;
+    }
+    .image-profil-container{
+        width: 800px;
+        max-height: 270px;
+    }
+    .profile-anime-section {
+        width: 800px;
+    }
+    .profile-anime-section h2{
+        font-size: 2rem;
+    }
+    .profile-anime-section ul{
+        font-size: 1.4rem;
+    }
+    .card{
+        padding: 70px!important;
+        width: 200px;
+    }
+    .card a{
+        padding: 21px 20px;
+    }
+    .anime-catalogue-filter {
+        max-width: 900px;
+    }
+    #search-input {
+        padding: 25px;
+        font-size: 1.4rem;
+        max-width: 900px;
+        width: 850px;
+    }
+    
+    .anime-catalogue-item {
+        height: 320px;
+    }
+    .anime-catalogue-list h2{
+        font-size: 1.4rem;
+    }
+    .checkbox-wrapper-16 .checkbox-tile {
+        min-height: 40px;
+    }
+    .scan-container-box h3{
+        font-size: 1.8rem;
+    }
+    .filter-container{
+        font-size: 1.2rem;
+    }
+    .favbtn{
+        padding: 20px 20px!important;
+    }
+    .main-profile-container p{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 831px) {
+    .header-section {
+        position: relative;
+        width: 100%;
+        height: 25vh;
+        overflow: hidden;
+    }
+    .logo-site{
+        margin: 0 auto;
+        padding: 15px;
+    }
+    .home-icon-account{
+        display: none;
+        padding-left: 10px;
+    }
+    .logo-site img{
+        padding-right: 8px;
+    }
+    .anime-lecture-box {
+        width: 700px;
+    }
+    #video-iframe{
+        width:700px;
+        margin-bottom: 40px;
+    }
+    .image-profil-container{
+        width: 600px;
+        max-height: 220px;
+    }
+    .profile-anime-section {
+        width: 600px;
+        margin: 0 60px;
+    }
+    .main-profile-container p {
+        font-size: 16px;
+    }
+    .main-profile-container strong {
+        font-size: 16px;
+    }
+    .card{
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 728px) {
+    .home-navbar-container {
+        min-width: 600px;
+    }
+    .search-form {
+        --width-of-input: 400px;
+    }
+    #search-results{
+        margin-top: 0;
+        border-radius: 5px;
+        margin-right: 30px;
+        width: 50%;
+        top: -30px;
+    }
+    .header-section {
+        position: relative;
+        width: 100%;
+        height: 20vh;
+        overflow: hidden;
+    }
+    .anime-lecture-box {
+        width: 600px;
+    }
+    #video-iframe{
+        width:600px;
+        height: 450px;
+        margin-bottom: 40px;
+    }
+    .image-profil-container{
+        width: 580px;
+        max-height: 190px;
+
+    }
+    .main-profile-container p {
+        font-size: 15px;
+        max-width: 90%;
+
+    }
+    .main-profile-container strong {
+        font-size: 14px;
+    }
+    .saisons-container {
+        padding: 10px;
+    }
+    .card{
+        width: 150px;
+    }
+    #search-input{
+        max-width: 450px;
+    }
+}
+
+
+@media screen and (max-width: 680px) {
+    .home-navbar-container {
+        min-width: 600px;
+    }
+    .search-form {
+        --width-of-input: 400px;
+    }
+    .header-section {
+        position: relative;
+        width: 100%;
+        height: 20vh;
+        overflow: hidden;
+    }
+    .anime-lecture-box {
+        width: 600px;
+    }
+    #search-results{
+        margin-top: 0;
+        border-radius: 5px;
+    }
+    #video-iframe{
+        width:600px;
+        height: 450px;
+        margin-bottom: 40px;
+    }
+    .image-profil-container{
+        width: 500px;
+        max-height: 190px;
+
+    }
+    .main-profile-container p {
+        font-size: 15px;
+        max-width: 90%;
+    }
+    .main-profile-container strong {
+        font-size: 14px;
+    }
+    .saisons-container {
+        padding: 10px;
+    }
+    .card{
+        width: 150px;
+    }
+}
+
+
+@media screen and (max-width: 647px) {
+    .home-navbar-container {
+        min-width: 500px;
+    }
+    .anime-lecture-box {
+        width: 510px;
+    }
+    #video-iframe{
+        width:510px;
+        height: 400px;
+        margin-bottom: 40px;
+    }
+    #search-results{
+        margin-top: 0;
+        border-radius: 5px;
+    }
+    .image-profil-container{
+        width: 450px;
+        max-height: 180px;
+
+    }
+    .profile-anime-section {
+        width:500px;
+    }
+    .main-profile-container p {
+        font-size: 15px;
+    }
+    .main-profile-container strong {
+        font-size: 15px;
+    }
+    .card{
+        width: 100px;
+        height: 100px;
+    }
+
+}
+
+@media screen and (max-width: 528px) {
+    .home-navbar-container {
+        min-width: 400px;
+    }
+    .anime-lecture-box {
+        width: 410px;
+    }
+    #video-iframe{
+        width:410px;
+        height: 300px;
+        margin-bottom: 40px;
+    }
+    #search-results{
+        margin-top: 0;
+        border-radius: 5px;
+    }
+    .profile-manga-roles{
+        width: 400px;
+    }
+    .card{
+        max-width: 170px;
+    }
+    body{
+        overflow-x: hidden;
+    }
+    .cover-container img{
+        max-width: 400px;
+    }
+    #search-input{
+        max-width: 350px;
+    }
+}
+
+@media screen and (max-width: 436px) {
+    body{
+        overflow-x: hidden;
+    }
+    .home-navbar-container {
+        min-width: 300px;
+    }
+    .search-form {
+        --width-of-input: 300px;
+    }
+    .main-video-container h2{
+        font-size: 17px;
+    }
+    .main-video-container h3{
+        font-size: 14px;
+    }
+    #search-results{
+        margin-top: 0;
+        border-radius: 5px;
+    }
+    .scan-item img {
+        height: 150px;
+    }
+    .scan-item {
+        width: 110px;
+    }
+    .scan-container {
+        padding: 2px;
+        width: 120px;
+    }
+    
+    .anime-lecture-box {
+        width: 340px;
+    }
+    #video-iframe{
+        width:340px;
+        height: 250px;
+        margin-bottom: 40px;
+    }
+    .cover-container img{
+        max-width: 350px;
+    }
+    #search-input{
+        max-width: 250px;
+    }
+}
+@media screen and (max-width: 358px) {
+    .anime-lecture-box {
+        width: 290px;
+    }
+    #video-iframe{
+        width:290px;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+    #search-results{
+        margin-top: 0;
+        border-radius: 5px;
+    }
+    .cover-container img{
+        max-width: 290px;
+    }
+    #search-input{
+        max-width: 200px;
+    }
+}
+@media screen and (max-width: 323px) {
+    .home-navbar-container {
+        min-width: 200px;
+    }
+    #search-results{
+        margin-top: 0;
+        border-radius: 5px;
+    }
+    .search-form {
+        --width-of-input: 250px;
+    }
+    .main-video-container h2{
+        font-size: 17px;
+    }
+    .main-video-container h3{
+        font-size: 14px;
+    }
+    .scan-item img {
+        height: 150px;
+    }
+    .scan-item {
+        width: 110px;
+    }
+    .scan-container {
+        padding: 2px;
+        width: 120px;
+    }
+    .main-video-container h2{
+        font-size: 15px;
+    }
+    .main-video-container h3{
+        font-size: 13px;
+    }
+    #searchButtonBar {
+        width: 40%;
+    }
+    .anime-lecture-box {
+        width: 200px;
+    }
+    #video-iframe{
+        width:200px;
+        height: 200px;
+        margin-bottom: 40px;
+
+    }
+    #lecteur-select {
+        width: 70px;
+    }
+    #episode-select{
+        width: 70px;
+    }
+    .cover-container img{
+        max-width: 200px;
+    }
+    .navigation-buttons button{
+        max-width: 123px;
+    }
+    #search-input{
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 1260px) {
+    #video-iframe{
+        width: 1100px;
+        margin-bottom: 5px !important;
+    }
+}
+
+@media (max-width: 1130px) {
+    #video-iframe{
+        width: 1000px;
+        margin-bottom: 5px !important;
+    }
+}
+
+@media (max-width: 1038px) {
+    #video-iframe{
+        width: 900px;
+        margin-bottom: 5px !important;
+    }
+}
+@media (max-width: 930px) {
+    #video-iframe{
+        width: 810px;
+        margin-bottom: 5px !important;
+    }
+}
+@media (max-width: 852px) {
+    #video-iframe{
+        width: 700px;
+        margin-bottom: 5px !important;
+    }
+}
+@media (max-width: 768px) {
+
+    #video-iframe {
+        width: 620px;
+        height: 650px;
+        margin-bottom: 5px !important;
+    }
+}
+@media (max-width: 651px) {
+
+    #video-iframe {
+        width: 530px;
+        height: 750px;
+        margin-bottom: 5px !important;
+    }
+}
+@media (max-width: 1060px) {
+
+    #scanImg {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1060px) {
+
+    #menu-menu {
+        display: none;
+    }
+}
+@media (max-width: 771px) {
+
+    .logos {
+        display: none;
+    }
+}
+
+@media (max-width: 531px) {
+
+    #live-search_sb {
+        width: 100% !important;
+        right: 2px !important;
+        top: 79px !important;
+    }
+    .live-search_sb_cont {
+        max-height: 100% !important;
+    }
+}

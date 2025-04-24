@@ -1,0 +1,163 @@
+{# templates/profile/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ manga.titre }} | Animes & Scans gratuits sur InMyScan{% endblock %}
+
+{% block meta_description %}
+    <meta name="description" content="Regarder/Lire {{ manga.titre }} en streaming VF/VOSTF [Gratuit] sur InMyScan.">
+{% endblock %}
+
+{% block body %}
+    {{ navbar() }}
+<div class="main-manga-profile">
+    <div class="seriestucon">
+        <div class="seriestuheader">
+            <h1 class="entry-title" itemprop="name">{{ manga.titre }}</h1>
+        </div>
+        <div class="seriestucontent">
+            <div class="seriestucontl">
+                <div class="thumb" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject"> 
+                    <img width="1444" height="2048" src="{{ asset('img/anime_pfp/' ~ manga.photo) }}" alt="Couverture de {{ manga.titre }}"  class="attachment- size- wp-post-image" title="{{ manga.titre }}" itemprop="image" decoding="async" fetchpriority="high">
+                </div>
+                <div data-id="5029" class="bookmark" id="add-to-favorites">
+                    <i class="far fa-bookmark"  aria-hidden="true"></i> Ajouter à votre liste 
+                </div>
+                <div class="bmc"></div>
+            </div>
+            <div class="seriestucontentr">
+                <div class="seriestuhead">
+                    <div class="entry-content entry-content-single" itemprop="description">
+                        {% if manga.description %}
+                            <p>{{manga.description}}</p>
+                        {% else %}
+                            <p>La description pour ce scan / anime n'est pas encore disponible... On la mettra peut-être un jour, qui sait ?</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="seriestucont">
+                    <div class="seriestucontr">
+                        <table class="infotable">
+                            <tbody>
+                                <tr>
+                                    <td>Statut</td>
+                                    {# {% if manga.statut %}
+                                    <td>{{ manga.statut }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Type</td>
+                                    {# {% if manga.type %}
+                                    <td>{{ manga.type }}</td> #}
+                                    {# {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Année</td>
+                                    {# {% if manga.date %}
+                                    <td>{{ manga.date }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Auteur</td>
+                                    {% if manga.description %}
+                                    <td>{{ manga.author }}</td>
+                                    {% else %}
+                                    <td>Inconnu</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <td>Prépublication</td>
+                                    {# {% if manga.studio %}
+                                    <td>{{ manga.studio }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="seriestugenre">
+                            {% for role in roles %}
+                            <a href="#" rel="tag">{{role}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bixbox bxcl epcheck">
+        <div class="releases">
+            <h2>Voir : {{manga.titre}}</h2>
+        </div>
+        <div class="search-chapter" style="display: none;">
+            <input id="searchchapter" type="text" placeholder="Rechercher un chapitre ou un volume | Exemple: 11 ou 317" autocomplete="off">
+        </div>
+        <div class="eplister" id="chapterlist">
+            {% if saisons is not empty or scans is not empty %}
+            <ul>
+            {% for saison_numero, episodes in saisons %}
+                <li data-num="Saison {{saison_numero}}">
+                    <div class="chbox">
+                        <div class="eph-num">
+                            <a href="{{ path('voir_anime', {'mangaId': manga.id, 'saison': saison_numero}) }}">
+                                <span class="chapternum"> Saison {{saison_numero}}</span>
+                                <span class="chapterdate">juin 4, 2024</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+                {% if scans is not empty %}
+                <li data-num="Lire les scans">
+                    <div class="chbox">
+                        <div class="eph-num">
+                            <a href="{{ path('manga_scans', {'id': manga.id}) }}">
+                                <span class="chapternum">Lire les chapitres</span>
+                                <span class="chapterdate">juin 4, 2024</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Récupérer la liste des animes dans le localStorage
+        let animeList = JSON.parse(localStorage.getItem('animes')) || [];
+        let addToFavoritesBtn = document.getElementById('add-to-favorites');
+        // Vérifier si l'anime est déjà dans les favoris
+        let animeExists = animeList.some(anime => anime.id === {{ manga.id }});
+        if (animeExists) {
+            addToFavoritesBtn.classList.add('btn-transparent');
+        }
+        addToFavoritesBtn.addEventListener('click', function() {
+            animeExists = animeList.some(anime => anime.id === {{ manga.id }});
+
+            if (!animeExists) {
+                animeList.push({
+                    id: {{ manga.id }},
+                    titre: '{{ manga.titre }}'
+                });
+                this.classList.add('btn-transparent');
+
+            } else {
+                animeList = animeList.filter(anime => anime.id !== {{ manga.id }});
+                this.classList.remove('btn-transparent');
+            }
+            localStorage.setItem('animes', JSON.stringify(animeList));
+        });
+    });
+
+</script>
+{% endblock %}

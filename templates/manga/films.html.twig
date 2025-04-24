@@ -1,0 +1,163 @@
+{# templates/profile/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ film.titre }} | Animes & scans gratuits sur InMyScan{% endblock %}
+
+{% block meta_description %}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <meta name="description" content="Regardez le film {{ film.titre }} en streaming VF/VOSTF [Gratuit] sur InMyScan">
+{% endblock %}
+
+{% block body %}
+    {{ navbar() }}
+<div class="main-manga-profile">
+    <div class="seriestucon">
+        <div class="seriestuheader">
+            <h1 class="entry-title" itemprop="name">{{ film.titre }}</h1>
+        </div>
+        <div class="seriestucontent">
+            <div class="seriestucontl">
+                <div class="thumb" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject"> 
+                    <img width="1444" height="2048" src="{{ asset('img/film_img/' ~ film.photo) }}" alt="Couverture de {{ film.titre }}"  class="attachment- size- wp-post-image" title="{{ film.titre }}" itemprop="image" decoding="async" fetchpriority="high">
+                </div>
+                <div data-id="5029" class="bookmark" id="add-to-favorites">
+                    <i class="far fa-bookmark"  aria-hidden="true"></i> Ajouter à votre liste 
+                </div>
+                <div class="bmc"></div>
+            </div>
+            <div class="seriestucontentr">
+                <div class="seriestuhead">
+                    <div class="entry-content entry-content-single" itemprop="description">
+                        {% if film.description %}
+                            <p>{{film.description}}</p>
+                        {% else %}
+                            <p>La description pour ce film n'est pas encore disponible... On la mettra peut-être un jour, qui sait ?</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="seriestucont">
+                    <div class="seriestucontr">
+                        <table class="infotable">
+                            <tbody>
+                                <tr>
+                                    <td>Statut</td>
+                                    {# {% if manga.statut %}
+                                    <td>{{ manga.statut }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Type</td>
+                                    {# {% if manga.type %}
+                                    <td>{{ manga.type }}</td> #}
+                                    {# {% else %} #}
+                                    <td>Film</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Année</td>
+                                    {# {% if manga.date %}
+                                    <td>{{ manga.date }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Auteur</td>
+                                    <td>Inconnu</td>
+                                </tr>
+                                <tr>
+                                    <td>Prépublication</td>
+                                    {# {% if manga.studio %}
+                                    <td>{{ manga.studio }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="seriestugenre">
+                            {# {% for role in roles %} #}
+                            <a href="#" rel="tag">Film</a>
+                            <a href="#" rel="tag">Palpitant</a>
+                            {# {% endfor %} #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bixbox bxcl epcheck">
+        <div class="releases">
+            <h2>Voir : {{film.titre}}</h2>
+        </div>
+        <div class="search-chapter" style="display: none;">
+            <input id="searchchapter" type="text" placeholder="Rechercher un film |" autocomplete="off">
+        </div>
+        <div class="eplister" id="chapterlist">
+            {% if lecteurLinks is not empty %}
+            <ul>
+                <li data-num="Film numero 1">
+                    <div class="chbox">
+                        <div class="eph-num">
+                            <a href="{{ path('voir_film', {'id': film.id}) }}">
+                                <span class="chapternum"> Regarder maintenant</span>
+                                <span class="chapterdate">Sortie en {{film.getAnneeSortie()}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            {% else %}
+            <ul>
+                <li data-num="Film numero 1">
+                    <div class="chbox">
+                        <div class="eph-num">
+                            <a href="#">
+                                <span class="chapternum">Le film est indisponible</span>
+                                <span class="chapterdate">R.I.P</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Récupérer la liste des animes dans le localStorage
+        let filmList = JSON.parse(localStorage.getItem('films')) || [];
+        let addToFavoritesBtn = document.getElementById('add-to-favorites');
+        // Vérifier si l'anime est déjà dans les favoris
+        let filmExists = filmList.some(film => film.id === {{ film.id }});
+        if (filmExists) {
+            addToFavoritesBtn.classList.add('btn-transparent');
+        }
+        addToFavoritesBtn.addEventListener('click', function() {
+            filmExists = filmList.some(film => film.id === {{ film.id }});
+
+            if (!filmExists) {
+                filmList.push({
+                    id: {{ film.id }},
+                    titre: '{{ film.titre }}',
+                    photo: '{{ film.photo }}',
+                    type: 'film' 
+                });
+                this.classList.add('btn-transparent');
+
+            } else {
+                filmList = filmList.filter(film => film.id !== {{ film.id }});
+                this.classList.remove('btn-transparent');
+            }
+            localStorage.setItem('films', JSON.stringify(filmList));
+        });
+    });
+
+</script>
+{% endblock %}

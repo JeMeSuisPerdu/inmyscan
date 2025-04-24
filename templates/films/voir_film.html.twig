@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ film.titre }} | Film VOSTFR{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Regardez {{ film.titre }} en VOSTFR. Choisissez parmi différents lecteurs et profitez du film dans la meilleure qualité." />
+    <meta name="keywords" content="film, {{ film.titre }}, VOSTFR, regarder film, film complet" />
+    <meta name="author" content="Votre Nom" />
+    <meta http-equiv="Content-Language" content="fr" />
+    <link rel="canonical" href="{{ path('films_profile', { 'id': film.id }) }}" />
+{% endblock %}
+
+{% block body %}
+    {{ navbar() }}
+
+    <div class="film-lecture-container">
+        <h1>
+            <a style="color: white;" href="{{ path('films_profile', { 'id': film.id }) }}">{{ film.titre }}</a>
+        </h1>        
+        <div class="film-lecture-box">
+            <div class="film-lecture-content-vid">
+                <div class="select-film-lecteur" style="display:flex;">
+                    <select id="lecteur-select" aria-label="Sélectionnez un lecteur">
+                        {% for lecteur, lien in lecteurLinks %}
+                            <option value="{{ lien }}">{{ lecteur }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="video-container" style="margin-top: 20px;">
+            <iframe id="video-iframe" src="" frameborder="0" height="700" width="1200" allowfullscreen style="display: none;margin-bottom: 40px;"></iframe>
+        </div>
+        <div id="lecteur-message" style="display: none; color: red; margin-top: 10px;">
+            Essayez de changer de lecteur...
+        </div>
+    </div>
+    {{ footer() }}
+
+    {# Données structurées pour le film #}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Movie",
+        "name": "{{ film.titre }}",
+        "description": "Regardez {{ film.titre }} en VF. Choisissez parmi différents lecteurs.",
+        "thumbnailUrl": "{{ asset('img/film_pfp/' ~ film.photo) }}",
+        "uploadDate": "{{ 'now'|date('Y-m-d') }}",
+        "duration": "PT2H",
+        "contentUrl": "{{ path('films_profile', { 'id': film.id }) }}"
+    }
+    </script>
+
+    <script>
+        var lecteurLinks = {{ lecteurLinks | json_encode | raw }}; // Récupérer les liens des lecteurs
+
+        var lecteurSelect = document.getElementById('lecteur-select');
+        var videoIframe = document.getElementById('video-iframe');
+        var lecteurMessage = document.getElementById('lecteur-message'); // Référence au message d'avertissement
+
+        // Fonction pour mettre à jour la vidéo dans l'iframe
+        function updateVideo(link) {
+            if (link) {
+                videoIframe.src = link; // Met à jour l'attribut src de l'iframe avec le lien du lecteur
+                videoIframe.style.display = 'block'; // Affiche l'iframe
+                lecteurMessage.style.display = 'none'; // Masque le message d'erreur
+            } else {
+                videoIframe.style.display = 'none';
+                lecteurMessage.style.display = 'block'; // Affiche le message d'erreur
+            }
+        }
+
+        // Gestion du changement de sélection du lecteur
+        lecteurSelect.addEventListener('change', function() {
+            var selectedLink = this.value;
+            updateVideo(selectedLink);
+        });
+
+        // Initialisation : sélectionner automatiquement le premier lecteur et afficher la vidéo
+        document.addEventListener('DOMContentLoaded', function() {
+            var firstLecteurLink = lecteurSelect.value; // Obtenir le lien du premier lecteur
+            updateVideo(firstLecteurLink); // Charger la vidéo
+        });
+    </script>
+    <style>
+
+    </style>
+{% endblock %}

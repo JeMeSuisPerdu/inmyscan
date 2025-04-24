@@ -1,0 +1,280 @@
+.main-manga-profile{
+    max-width:1200px;
+    margin:0 auto;
+}
+        /* Conteneur principal */
+        .seriestucon {
+            max-width: 1200px;
+            margin: 10px auto;
+            padding: 20px;
+            /*background-color: #2e2e2e;*/
+            border-radius: 5px;
+            color: #cccccc;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border: 1px solid #222;
+        }
+
+        /* Titre principal */
+        .seriestuheader h1 {
+            /*font-size: 2.5rem;*/
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+            background: #111;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 900;
+        }
+
+        /* Contenu principal */
+        .seriestucontent {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Colonne gauche */
+        .seriestucontl {
+            flex: 1 1 300px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .seriestucontl .thumb img {
+        width: 330px;
+        height: 473px;
+        /* border-radius: 10px; */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        object-fit: cover;
+        }
+
+        .seriestucontl .thumb img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .bookmark {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #f8a673;
+            color: #000000;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Colonne droite */
+        .seriestucontentr {
+            flex: 2 1 600px;
+        }
+
+        .seriestuhead {
+            margin-bottom: 20px;
+        }
+
+        .entry-content p {
+            /*font-size: 1.1rem;*/
+            line-height: 1.6;
+            text-align: justify;
+            height: 178px;
+            overflow-y: scroll;
+            text-overflow: ellipsis;
+            white-space: pre-line;
+        }
+
+        /* Informations supplémentaires */
+        .seriestucont {
+            background-color: #222222;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            margin-top: 20px;
+            
+        }
+
+        .infotable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        .infotable td {
+            padding: 10px;
+            border-bottom: 1px solid #4a4a4a;
+        }
+
+        .infotable td:first-child {
+            font-weight: bold;
+            color: #efefefc7;
+        }
+
+        .infotable td:last-child {
+            text-align: right;
+            /*color: #f0f0f0;*/
+        }
+
+        /* Genres */
+        .seriestugenre a {
+            display: inline-block;
+            margin: 5px 5px 0 0;
+            padding: 5px 10px;
+            background-color: #e50914eb;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .seriestugenre a:hover {
+            background-color: #8b8b8b30;
+            transform: scale(1.05);
+        }
+
+        /* Conteneur principal */
+        .bixbox.bxcl.epcheck {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px 20px 20px;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Titre de la liste */
+        .bixbox .releases h2 {
+            font-size: 15px;
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 20px;
+            background: #111;
+            font-weight: 900;
+        }
+
+        /* Barre de recherche (si affichée) */
+        .search-chapter input {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: 1px solid #4a4a4a;
+            border-radius: 8px;
+            background-color: #3a3a3a;
+            color: #f5f5f5;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-chapter input::placeholder {
+            color: #bdbdbd;
+        }
+
+        .search-chapter input:focus {
+            outline: none;
+            border-color: #ff5733;
+            box-shadow: 0 0 5px rgba(255, 87, 51, 0.7);
+        }
+
+        /* Liste des chapitres */
+        .eplister ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .eplister ul li {
+            margin-bottom: 10px;
+            background-color: #111;
+            border-radius: 8px;
+            padding: 25px 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 200px;
+        }
+
+        .eplister ul li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            background: #333;
+        }
+
+        .eplister ul li a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Informations des chapitres */
+        .chapternum {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ccc;
+        }
+
+        .chapterdate {
+            font-size: 13px;
+            color: #bdbdbd;
+        }
+
+        /* Chapitre spécifique (premier chapitre par exemple) */
+        .first-chapter {
+            background-color: #4a4a4a;
+            border-left: 4px solid #ff5733;
+        }
+
+        .first-chapter:hover {
+            background-color: #5c5c5c;
+        }
+
+        /* Effet interactif */
+        .first-chapter:hover {
+            background-color: #5c5c5c;
+        }
+
+        .btn-transparent{
+            background-color: #333;
+            font-weight: 600;
+        }
+
+        .entry-content p::-webkit-scrollbar {
+            width: 8px; 
+            height: 0px; 
+        }
+        /* Responsive Design */
+        @media (max-width: 1062px) {
+            .seriestucontent {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .seriestucontl {
+                max-width: 100%;
+            }
+
+            .seriestucontentr {
+                max-width: 100%;
+            }
+
+            .infotable td {
+                display: block;
+                text-align: left;
+                padding: 8px;
+            }
+
+            .seriestuheader h1 {
+                font-size: 2rem;
+            }
+        }

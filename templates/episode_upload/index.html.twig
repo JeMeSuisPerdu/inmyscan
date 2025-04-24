@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="text-align: center; color: #fafafa; font-family: Arial, sans-serif;">Uploader un Épisode</h1>
+            <a href="{{path('manga_create_form')}}" style="padding: 12px; display: flex; background-color: #43375b87; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;justify-content: center; width: 200px; margin: 50px auto;">
+                Créer un Manga / film ? 
+            </a>
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <form action="{{ path('episode_upload') }}" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+            <label for="manga_id" style="margin-bottom: 8px; color: #555; font-weight: bold;">Manga :</label>
+            <select id="manga_id" name="manga_id" required style="padding: 10px; margin-bottom: 20px; border-radius: 4px; border: 1px solid #ccc;">
+                {% for manga in mangas %}
+                    <option value="{{ manga.id }}">{{ manga.titre }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="saison_numero" style="margin-bottom: 8px; color: #555; font-weight: bold;">Numéro de Saison :</label>
+            <input type="number" id="saison_numero" name="saison_numero" value="1" required style="padding: 10px; margin-bottom: 20px; border-radius: 4px; border: 1px solid #ccc;">
+
+            <label for="episode_number" style="margin-bottom: 8px; color: #555; font-weight: bold;">Numéro de l'Épisode :</label>
+            <input type="number" id="episode_number" name="episode_number" value="1" required style="padding: 10px; margin-bottom: 20px; border-radius: 4px; border: 1px solid #ccc;">
+
+            <label for="lecteur1" style="margin-bottom: 8px; color: #555; font-weight: bold;">Lien SIBNET :</label>
+            <input type="url" id="lecteur1" name="lecteur1" style="padding: 10px; margin-bottom: 20px; border-radius: 4px; border: 1px solid #ccc;">
+
+            <label for="lecteur2" style="margin-bottom: 8px; color: #555; font-weight: bold;">Lien VIDMOLY :</label>
+            <input type="url" id="lecteur2" name="lecteur2" style="padding: 10px; margin-bottom: 20px; border-radius: 4px; border: 1px solid #ccc;">
+
+            <label for="lecteur3" style="margin-bottom: 8px; color: #555; font-weight: bold;">Lien SENDVID :</label>
+            <input type="url" id="lecteur3" name="lecteur3" style="padding: 10px; margin-bottom: 20px; border-radius: 4px; border: 1px solid #ccc;">
+
+            <div style="margin-bottom: 20px;">
+                <input type="checkbox" id="is_film" name="is_film" value="true" onchange="toggleFilmMode(this)">
+                <label for="is_film" style="color: #555; font-weight: bold;">Est-ce un film ?</label>
+            </div>
+
+            <button type="submit" style="padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+                Uploader l'Épisode
+            </button>
+        </form>
+        
+    </div>
+
+
+    <script>
+        // Fonction pour activer/désactiver les champs saison et épisode
+        function toggleFilmMode(checkbox) {
+            const saisonInput = document.getElementById('saison_numero');
+            const episodeInput = document.getElementById('episode_number');
+            
+            if (checkbox.checked) {
+                // Si c'est un film, rendre les champs en lecture seule et mettre à 1
+                saisonInput.value = 1;
+                episodeInput.value = 1;
+                saisonInput.setAttribute('readonly', true);
+                episodeInput.setAttribute('readonly', true);
+                saisonInput.style.backgroundColor = '#e0e0e0'; // Fond gris
+                episodeInput.style.backgroundColor = '#e0e0e0'; // Fond gris
+            } else {
+                // Si ce n'est pas un film, retirer l'attribut readonly et réinitialiser la couleur
+                saisonInput.removeAttribute('readonly');
+                episodeInput.removeAttribute('readonly');
+                saisonInput.style.backgroundColor = ''; // Retirer le fond gris
+                episodeInput.style.backgroundColor = ''; // Retirer le fond gris
+            }
+        }
+    </script>
+{% endblock %}

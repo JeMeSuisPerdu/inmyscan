@@ -1,0 +1,92 @@
+<?php //4730bece6ec0502af3ba57c1c69ca48b
+
+return [PHP_INT_MAX, static fn () => \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+        clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+        clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+    ],
+    null,
+    [
+        'Doctrine\\ORM\\Query\\ParserResult' => [
+            'sqlExecutor' => [
+                $o[1],
+            ],
+            'resultSetMapping' => [
+                $o[2],
+            ],
+        ],
+        'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+            'sqlStatements' => [
+                1 => 'SELECT s0_.id AS id_0, s0_.nom AS nom_1, s0_.liens AS liens_2, s0_.date_sortie AS date_sortie_3, s0_.date_modification AS date_modification_4, m1_.id AS id_5, m1_.titre AS titre_6, m1_.description AS description_7, m1_.photo AS photo_8, m1_.author AS author_9 FROM scan s0_ INNER JOIN scan_manga s2_ ON s0_.id = s2_.scan_id INNER JOIN manga m1_ ON m1_.id = s2_.manga_id ORDER BY s0_.date_sortie DESC LIMIT 10',
+            ],
+        ],
+        'stdClass' => [
+            'aliasMap' => [
+                2 => [
+                    's' => 'App\\Entity\\Scan',
+                    'm' => 'App\\Entity\\Manga',
+                ],
+            ],
+            'relationMap' => [
+                2 => [
+                    'm' => 'manga_id',
+                ],
+            ],
+            'parentAliasMap' => [
+                2 => [
+                    'm' => 's',
+                ],
+            ],
+            'fieldMappings' => [
+                2 => [
+                    'id_0' => 'id',
+                    'nom_1' => 'nom',
+                    'liens_2' => 'liens',
+                    'date_sortie_3' => 'date_sortie',
+                    'date_modification_4' => 'date_modification',
+                    'id_5' => 'id',
+                    'titre_6' => 'titre',
+                    'description_7' => 'description',
+                    'photo_8' => 'photo',
+                    'author_9' => 'author',
+                ],
+            ],
+            'entityMappings' => [
+                2 => [
+                    's' => null,
+                ],
+            ],
+            'columnOwnerMap' => [
+                2 => [
+                    'id_0' => 's',
+                    'nom_1' => 's',
+                    'liens_2' => 's',
+                    'date_sortie_3' => 's',
+                    'date_modification_4' => 's',
+                    'id_5' => 'm',
+                    'titre_6' => 'm',
+                    'description_7' => 'm',
+                    'photo_8' => 'm',
+                    'author_9' => 'm',
+                ],
+            ],
+            'declaringClasses' => [
+                2 => [
+                    'id_0' => 'App\\Entity\\Scan',
+                    'nom_1' => 'App\\Entity\\Scan',
+                    'liens_2' => 'App\\Entity\\Scan',
+                    'date_sortie_3' => 'App\\Entity\\Scan',
+                    'date_modification_4' => 'App\\Entity\\Scan',
+                    'id_5' => 'App\\Entity\\Manga',
+                    'titre_6' => 'App\\Entity\\Manga',
+                    'description_7' => 'App\\Entity\\Manga',
+                    'photo_8' => 'App\\Entity\\Manga',
+                    'author_9' => 'App\\Entity\\Manga',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+)];

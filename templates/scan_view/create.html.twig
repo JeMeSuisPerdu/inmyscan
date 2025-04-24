@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Créer un nouveau Scan</h1>
+    <form action="{{ path('ajouter_scan') }}" method="POST">
+        <label for="nom">Nom du Scan :</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="eps">Chapitre (ex: eps1) :</label>
+        <input type="text" id="eps" name="eps" required>
+
+        <label for="liens">Liens des Chapitres (séparés par une virgule) :</label>
+        <textarea id="liens" name="liens" required></textarea>
+
+        <button type="submit">Ajouter le Scan</button>
+    </form>
+{% endblock %}

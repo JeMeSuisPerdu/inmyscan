@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ajouter des Chapitres au Scan ID: {{ scanId }}</h1>
+    <form action="{{ path('ajouter_chapitre', { id: scanId }) }}" method="POST">
+        <label for="eps">Numéro de l'Épisode (ex: eps3) :</label>
+        <input type="text" id="eps" name="eps" required>
+
+        <label for="liens">Liens des Chapitres (séparés par une virgule) :</label>
+        <textarea id="liens" name="liens" required></textarea>
+
+        <button type="submit">Ajouter les Chapitres</button>
+    </form>
+{% endblock %}

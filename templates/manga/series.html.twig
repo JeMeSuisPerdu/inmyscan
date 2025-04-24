@@ -1,0 +1,155 @@
+{# templates/profile/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ serie.titre }} | Série en streaming VF et VOSTF [Gratuit] sur InMyScan{% endblock %}
+
+{% block meta_description %}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <meta name="description" content="Regardez la série {{ serie.titre }} en streaming VF/VOSTF [Gratuit] sur InMyScan">
+{% endblock %}
+
+{% block body %}
+    {{ navbar() }}
+<div class="main-manga-profile">
+    <div class="seriestucon">
+        <div class="seriestuheader">
+            <h1 class="entry-title" itemprop="name">{{ serie.titre }}</h1>
+        </div>
+        <div class="seriestucontent">
+            <div class="seriestucontl">
+                <div class="thumb" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject"> 
+                    <img width="1444" height="2048" src="{{ asset('img/serie_img/' ~ serie.photo) }}" alt="Couverture de {{ serie.titre }}"  class="attachment- size- wp-post-image" title="{{ serie.titre }}" itemprop="image" decoding="async" fetchpriority="high">
+                </div>
+                <div data-id="5029" class="bookmark" id="add-to-favorites">
+                    <i class="far fa-bookmark"  aria-hidden="true"></i> Ajouter à votre liste 
+                </div>
+                <div class="bmc"></div>
+            </div>
+            <div class="seriestucontentr">
+                <div class="seriestuhead">
+                    <div class="entry-content entry-content-single" itemprop="description">
+                        {% if serie.description %}
+                            <p>{{serie.description}}</p>
+                        {% else %}
+                            <p>La description pour cette série n'est pas encore disponible... On la mettra peut-être un jour, qui sait ?</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="seriestucont">
+                    <div class="seriestucontr">
+                        <table class="infotable">
+                            <tbody>
+                                <tr>
+                                    <td>Statut</td>
+                                    {# {% if manga.statut %}
+                                    <td>{{ manga.statut }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Type</td>
+                                    {# {% if manga.type %}
+                                    <td>{{ manga.type }}</td> #}
+                                    {# {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Année</td>
+                                    {# {% if manga.date %}
+                                    <td>{{ manga.date }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                                <tr>
+                                    <td>Auteur</td>
+                                    {% if serie.author %}
+                                    <td>{{ serie.author }}</td>
+                                    {% else %}
+                                    <td>Inconnu</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <td>Prépublication</td>
+                                    {# {% if manga.studio %}
+                                    <td>{{ manga.studio }}</td>
+                                    {% else %} #}
+                                    <td>Inconnu</td>
+                                    {# {% endif %} #}
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="seriestugenre">
+                            {# {% for role in roles %} #}
+                            <a href="#" rel="tag">Recommandé</a>
+                            <a href="#" rel="tag">A voir</a>
+                            {# {% endfor %} #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bixbox bxcl epcheck">
+        <div class="releases">
+            <h2>Voir : {{serie.titre}}</h2>
+        </div>
+        <div class="search-chapter" style="display: none;">
+            <input id="searchchapter" type="text" placeholder="Rechercher un chapitre ou un volume | Exemple: 11 ou 317" autocomplete="off">
+        </div>
+        <div class="eplister" id="chapterlist">
+            {% if saisons is not empty %}
+            <ul>
+            {% for saison_numero, episodes in saisons %}
+                <li data-num="Saison {{saison_numero}}">
+                    <div class="chbox">
+                        <div class="eph-num">
+                            <a href="{{ path('voir_series', {'serieId': serie.id, 'saison': saison_numero}) }}">
+                                <span class="chapternum"> Saison {{saison_numero}}</span>
+                                <span class="chapterdate">juin 4, 2024</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Récupérer la liste des animes dans le localStorage
+        let serieList = JSON.parse(localStorage.getItem('serie')) || [];
+        let addToFavoritesBtn = document.getElementById('add-to-favorites');
+        // Vérifier si l'anime est déjà dans les favoris
+        let serieExists = serieList.some(serie => serie.id === {{ serie.id }});
+        if (serieExists) {
+            addToFavoritesBtn.classList.add('btn-transparent');
+        }
+        addToFavoritesBtn.addEventListener('click', function() {
+            serieExists = serieList.some(serie => serie.id === {{ serie.id }});
+
+            if (!serieExists) {
+                serieList.push({
+                    id: {{ serie.id }},
+                    titre: '{{ serie.titre }}',
+                    photo: '{{ serie.photo }}',
+                    type: 'serie'
+                });
+                this.classList.add('btn-transparent');
+
+            } else {
+                serieList = serieList.filter(serie => serie.id !== {{ serie.id }});
+                this.classList.remove('btn-transparent');
+            }
+            localStorage.setItem('serie', JSON.stringify(serieList));
+        });
+    });
+
+</script>
+{% endblock %}

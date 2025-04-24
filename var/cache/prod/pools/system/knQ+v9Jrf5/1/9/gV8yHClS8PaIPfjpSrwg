@@ -1,0 +1,90 @@
+<?php //71319c1463aa15498f427c4851023ff7
+
+return [PHP_INT_MAX, static fn () => \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+        clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+        clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+    ],
+    null,
+    [
+        'Doctrine\\ORM\\Query\\ParserResult' => [
+            'sqlExecutor' => [
+                $o[1],
+            ],
+            'resultSetMapping' => [
+                $o[2],
+            ],
+            'parameterMappings' => [
+                [
+                    'roleName' => [
+                        0,
+                    ],
+                ],
+            ],
+        ],
+        'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+            'sqlStatements' => [
+                1 => 'SELECT m0_.id AS id_0, m0_.titre AS titre_1, m0_.description AS description_2, m0_.photo AS photo_3, m0_.author AS author_4, r1_.id AS id_5, r1_.nom AS nom_6 FROM manga m0_ INNER JOIN role_manga r2_ ON m0_.id = r2_.manga_id INNER JOIN role r1_ ON r1_.id = r2_.role_id WHERE r1_.nom = ? ORDER BY m0_.titre ASC LIMIT 19',
+            ],
+        ],
+        'stdClass' => [
+            'aliasMap' => [
+                2 => [
+                    'm' => 'App\\Entity\\Manga',
+                    'r' => 'App\\Entity\\Role',
+                ],
+            ],
+            'relationMap' => [
+                2 => [
+                    'r' => 'roles',
+                ],
+            ],
+            'parentAliasMap' => [
+                2 => [
+                    'r' => 'm',
+                ],
+            ],
+            'fieldMappings' => [
+                2 => [
+                    'id_0' => 'id',
+                    'titre_1' => 'titre',
+                    'description_2' => 'description',
+                    'photo_3' => 'photo',
+                    'author_4' => 'author',
+                    'id_5' => 'id',
+                    'nom_6' => 'nom',
+                ],
+            ],
+            'entityMappings' => [
+                2 => [
+                    'm' => null,
+                ],
+            ],
+            'columnOwnerMap' => [
+                2 => [
+                    'id_0' => 'm',
+                    'titre_1' => 'm',
+                    'description_2' => 'm',
+                    'photo_3' => 'm',
+                    'author_4' => 'm',
+                    'id_5' => 'r',
+                    'nom_6' => 'r',
+                ],
+            ],
+            'declaringClasses' => [
+                2 => [
+                    'id_0' => 'App\\Entity\\Manga',
+                    'titre_1' => 'App\\Entity\\Manga',
+                    'description_2' => 'App\\Entity\\Manga',
+                    'photo_3' => 'App\\Entity\\Manga',
+                    'author_4' => 'App\\Entity\\Manga',
+                    'id_5' => 'App\\Entity\\Role',
+                    'nom_6' => 'App\\Entity\\Role',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+)];

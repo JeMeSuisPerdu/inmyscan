@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /creation_manga
+Disallow: /episode/upload
+Disallow: /login
+Disallow: /logout
+Disallow: /creation_scan
+Disallow: /scan/ajouter
+
+Sitemap: https://inmyscan.com/sitemap

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Uploader des Liens par Saison{% endblock %}
+
+{% block body %}
+    <h1>Uploader des Liens pour une Saison</h1>
+
+    <form action="{{ path('anime_season_upload') }}" method="POST">
+        <div class="form-group">
+            <label for="manga_id">ID du Manga:</label>
+            <input type="text" id="manga_id" name="manga_id" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="saison_numero">Numéro de la Saison:</label>
+            <input type="number" id="saison_numero" name="saison_numero" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="is_film">Est-ce un film ?</label>
+            <input type="checkbox" id="is_film" name="is_film" value="true">
+        </div>
+
+        <h3>Ajouter les liens des lecteurs</h3>
+        
+        <div class="form-group">
+            <label for="lecteur1">Liens pour Lecteur SIBNET (séparés par des virgules):</label>
+            <textarea id="lecteur1" name="lecteur1" class="form-control" rows="3" placeholder="ex: lien1, lien2, lien3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="lecteur2">Liens pour Lecteur VIDMOLY (séparés par des virgules):</label>
+            <textarea id="lecteur2" name="lecteur2" class="form-control" rows="3" placeholder="ex: lien1, lien2, lien3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="lecteur3">Liens pour Lecteur SENDVID (séparés par des virgules):</label>
+            <textarea id="lecteur3" name="lecteur3" class="form-control" rows="3" placeholder="ex: lien1, lien2, lien3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Uploader les Liens</button>
+    </form>
+{% endblock %}
