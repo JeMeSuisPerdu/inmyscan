@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="https://monportefolioanis.go.yj.fr/inmyscan_photo/accueil.png" alt="Page d'accueil" width="600">
+  <img src="https://imageprojetsanis.netlify.app/film.png" alt="Page d'accueil" width="600">
   <br>
   <em>Page d'accueil avec barre de recherche intégrée</em>
 </p>
@@ -21,7 +21,6 @@
       <li>📊 Nombre de saisons/épisodes</li>
       <li>🖼️ Affiche haute qualité</li>
     </ul>
-    <img src="https://monportefolioanis.go.yj.fr/inmyscan_photo/la%20serie.png" alt="Exemple Fiche Série" width="400">
   </li>
   <li><strong>Recherche intelligente</strong> :
     <ul>
@@ -72,17 +71,6 @@ npm install</code></pre>
   <li>✅ <strong>Modulable</strong> : Structure Symfony facile à étendre</li>
   <li>✅ <strong>Performance</strong> : Optimisé pour des temps de chargement rapides</li>
 </ul>
-
-<h2>📸 Captures d'Écran</h2>
-
-<table>
-  <tr>
-    <td align="center">Page des Séries</td>
-  </tr>
-  <tr>
-    <td><img src="https://monportefolioanis.go.yj.fr/inmyscan_photo/serie.png" width="300"></td>
-  </tr>
-</table>
 
 <h2>📝 Licence</h2>
 
