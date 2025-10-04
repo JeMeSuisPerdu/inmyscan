@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="https://imageprojetsanis.netlify.app/images/film.png" alt="Page d'accueil" width="600">
+  <img src="https://imageprojetsanis.netlify.app/images/film.png" alt="Page d'accueil" height="300" width="200">
   <br>
   <em>Page d'accueil avec barre de recherche intégrée</em>
 </p>
