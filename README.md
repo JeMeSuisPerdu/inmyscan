@@ -53,8 +53,8 @@
 
 <ol>
   <li>Cloner le dépôt :
-    <pre><code>git clone https://github.com/JeMeSuisPerdu/inmyscan.com.git
-cd inmyscan.com</code></pre>
+    <pre><code>git clone https://github.com/JeMeSuisPerdu/inmyscan
+cd inmyscan</code></pre>
   </li>
   <li>Installer les dépendances :
     <pre><code>composer install
